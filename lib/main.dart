@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo/pages/todos.dart';
-import 'pages/menu.dart';
-import 'pages/order.dart';
+import 'models/datamanager.dart';
+import 'pages/menupage.dart';
+import 'pages/orderpage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -75,16 +76,17 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Widget currentWidgetPage = const Text("Hello");
+    DataManager dataManager = DataManager();
 
     switch (selectedIndex) {
       case 0:
-        currentWidgetPage = const Menu();
+        currentWidgetPage = MenuPage(dataManager: dataManager);
         break;
       case 1:
         currentWidgetPage = const Todos();
         break;
       case 2:
-        currentWidgetPage = const Order();
+        currentWidgetPage = OrderPage(dataManager: dataManager);
         break;
     }
 
@@ -105,8 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: "Menu"),
           BottomNavigationBarItem(
               icon: Icon(Icons.today_outlined), label: "Todos"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.online_prediction_sharp), label: "Order"),
+          BottomNavigationBarItem(icon: Icon(Icons.shop), label: "Order"),
         ],
       ),
     );
